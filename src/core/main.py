@@ -1,7 +1,10 @@
-import pygame
-import src.configs.config as config
 from sys import exit
-import mod
+
+import pygame
+import moderngl
+
+import src.configs.config as config
+from uitl.settings_handler import SettingsHandler
 
 class Main:
     def __init__(self):
@@ -12,7 +15,9 @@ class Main:
 
         self.clock = pygame.time.Clock()
 
-        self.context = moderngl.create_context()
+        self.settings = SettingsHandler(self)
+
+        # self.context = moderngl.create_context()
 
     def run(self):
         while True:
@@ -20,7 +25,13 @@ class Main:
                 if event.type == pygame.QUIT:
                     exit()
 
-            dt = self.clock.tick() / 1000
+            static_dt = self.clock.tick() / 1000
+            self.settings.update(static_dt)
+
+            dt = static_dt * self.settings.time_scale
+
+            print(self.settings.visualise_mycorrhiza)
+
             pygame.display.update()
 
 if __name__ == "__main__":
