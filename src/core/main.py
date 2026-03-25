@@ -1,4 +1,5 @@
 from sys import exit
+import struct
 
 import pygame
 import moderngl
@@ -17,7 +18,35 @@ class Main:
 
         self.settings = SettingsHandler(self)
 
-        # self.context = moderngl.create_context()
+        self.context = moderngl.create_context(standalone=True)
+
+        Main.moderngl_test()
+
+    @staticmethod
+    def moderngl_test():
+        ctx = moderngl.create_context(standalone=True)
+        program = ctx.program(
+            vertex_shader="""
+                #version 330
+                
+                out float value;
+                out float product;
+            
+                void main() {
+                    value = gl_VertexID;
+                    product = gl_VertexID * gl_VertexID;
+                }
+            """,
+            varyings=("value", "product")
+        )
+
+        num_vertices = 10
+        vao = ctx.vertex_array(program, [])
+        buffer = ctx.buffer(reserve=num_vertices*8)
+        vao.transform(buffer, vertices=num_vertices)
+        data = struct.unpack("20f", buffer.read())
+        for i in range(0, 20, 2):
+            print("data = {} product = {}".format(*data[i:i+2]))
 
     def run(self):
         while True:
@@ -30,7 +59,7 @@ class Main:
 
             dt = static_dt * self.settings.time_scale
 
-            print(self.settings.visualise_mycorrhiza)
+            # print(self.settings.visualise_mycorrhiza)
 
             pygame.display.update()
 
