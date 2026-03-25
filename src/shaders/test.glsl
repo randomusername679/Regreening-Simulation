@@ -1,7 +1,9 @@
 #version 330
 
-void main() {
-    int something = 5;
+out float value;
+out float product;
 
-    something++;
+void main() {
+    value = gl_VertexID;
+    product = gl_VertexID * gl_VertexID;
 }

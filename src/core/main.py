@@ -1,5 +1,6 @@
 from sys import exit
 import struct
+import os
 
 import pygame
 import moderngl
@@ -24,19 +25,13 @@ class Main:
 
     @staticmethod
     def moderngl_test():
+        file = open("../shaders/test.glsl")
+        shader = file.read()
+        file.close()
+
         ctx = moderngl.create_context(standalone=True)
         program = ctx.program(
-            vertex_shader="""
-                #version 330
-                
-                out float value;
-                out float product;
-            
-                void main() {
-                    value = gl_VertexID;
-                    product = gl_VertexID * gl_VertexID;
-                }
-            """,
+            vertex_shader=shader,
             varyings=("value", "product")
         )
 
