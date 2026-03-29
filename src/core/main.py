@@ -1,6 +1,5 @@
 from sys import exit
 import struct
-import os
 
 import pygame
 import moderngl
@@ -19,7 +18,7 @@ class Main:
 
         self.settings = SettingsHandler(self)
 
-        self.context = moderngl.create_context(standalone=True)
+        # self.context = moderngl.create_context(standalone=True)
 
         Main.moderngl_test()
 
