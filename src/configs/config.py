@@ -1,4 +1,6 @@
-SCREEN_SIZE = (800, 500)
+import pyglm as glm
+
+SCREEN_SIZE = glm.vec2(800, 500)
 
 BACKGROUND_COLOR = (0, 0, 0)
 

@@ -3,8 +3,8 @@ import json
 import configs.config as config
 
 class SettingsHandler:
-    def __init__(self, main):
-        self.main = main
+    def __init__(self, app):
+        self.app = app
 
         self.last_updated = 0
         self.update_timer = 0
@@ -19,7 +19,6 @@ class SettingsHandler:
     def get_dict():
         with open(config.SETTINGS_PATH) as file:
             data = json.load(file)
-            file.close()
 
         return data
 
@@ -29,8 +28,8 @@ class SettingsHandler:
         self.time_scale = settings["time-scale"]
         self.time_paused = settings["time-paused"]
 
-    def update(self, dt):
-        self.update_timer += dt
+    def update(self):
+        self.update_timer += self.app.dt
         if self.update_timer >= config.SETTINGS_UPDATE_DEBOUNCE:
             self.update_timer = 0
             self.update_settings()
