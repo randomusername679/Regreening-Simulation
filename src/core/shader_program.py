@@ -19,7 +19,7 @@ class ShaderProgram:
         with open(f"../shaders/{shader_name}.vert") as shader:
             vertex = shader.read()
 
-        with open(f"../shaders/{shader_name}.vert") as shader:
+        with open(f"../shaders/{shader_name}.frag") as shader:
             fragment = shader.read()
 
         program = self.context.program(vertex_shader=vertex, fragment_shader=fragment)

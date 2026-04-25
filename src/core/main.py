@@ -35,7 +35,7 @@ class Simulation:
 
         self.dt = self.clock.tick()
         self.time = pygame.time.get_ticks() * 0.001
-        pygame.display.set_caption(f"{self.clock.get_fps() :.0f}")
+        pygame.display.set_caption(f"FPS: {self.clock.get_fps() :.0f}")
 
     def render(self):
         self.context.clear(color=config.BACKGROUND_COLOR)
