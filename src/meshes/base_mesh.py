@@ -3,7 +3,7 @@ import moderngl
 
 class BaseMesh:
     def __init__(self):
-        # These none attributes should be initialized in the mesh class that inherits this
+        # These none attributes should be initialised in the mesh class that inherits this
         self.context: moderngl.Context = None
         self.program = None
         self.vbo_format = None

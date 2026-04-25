@@ -1,4 +1,5 @@
 import sys
+
 import pygame
 import moderngl
 
@@ -29,6 +30,11 @@ class Simulation:
         self.shader_program = ShaderProgram(self)
         self.scene = Scene(self)
 
+    @staticmethod
+    def quit(reason=None):
+        pygame.quit()
+        sys.exit(reason)
+
     def update(self):
         self.shader_program.update()
         self.scene.update()
@@ -55,8 +61,7 @@ class Simulation:
             self.update()
             self.render()
 
-        pygame.quit()
-        sys.exit()
+        self.quit()
 
 if __name__ == "__main__":
     app = Simulation()
