@@ -1,5 +1,5 @@
 {
-    "visualise-mycorrhiza": true,
+    "visualise-mycorrhiza": false,
 
     "time-scale": 0,
     "time-paused": false

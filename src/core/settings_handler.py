@@ -2,6 +2,7 @@ import json
 
 import configs.config as config
 
+# TODO: implement this into the main file, maybe optimize it a bit
 class SettingsHandler:
     def __init__(self, app):
         self.app = app
